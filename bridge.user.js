@@ -6,6 +6,7 @@
 // @match        http://43.142.100.84:8080/*
 // @match        https://linsaey.github.io/longmao-farm-calculator/*
 // @match        https://linsaey.github.io/longmao-farm-calculator/index.html*
+// @match        https://aka.doubaocdn.com/s/*
 // @grant        GM.getValue
 // @grant        GM.setValue
 // @grant        GM_getValue
@@ -350,7 +351,9 @@
 
   /* ================= 页面侧：把数据交给计算器 ================= */
   function isPage() {
-    return /github\.io|linsaey\.github\.io/.test(location.host) || /longmao-farm-calculator/.test(location.pathname);
+    return /github\.io/.test(location.host) || /longmao-farm-calculator/.test(location.pathname) ||
+      /aka\.doubaocdn\.com/.test(location.host) ||
+      typeof window.__lmAbsorb === 'function';
   }
   async function injectToPage() {
     var st = await stGet(CFG.key, null);
